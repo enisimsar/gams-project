@@ -6,7 +6,7 @@ PARAMETER c(i)  capacity of site i /
 $include "capacities.txt"
 /;
 
-PARAMETER d(j,i)  distance from disposal site i to sector j in kilometers /
+PARAMETER d(i,j)  distance from disposal site i to sector j in kilometers /
 $include "distances.txt"
 /;
 
@@ -17,7 +17,7 @@ $include "estimates.txt"
 VARIABLES
 Z       total cost for objective function ;
 
-BINARY VARIABLE U(j,i)  0 or 1 indicating assignment of sector j to disposal site i;
+BINARY VARIABLE U(i,j)  0 or 1 indicating assignment of sector j to disposal site i;
 
 BINARY VARIABLE T(i)  0 or 1 indicating assignment of sector j to disposal site i;
 
@@ -27,9 +27,9 @@ CAP(i)      capacity constraints
 ASG(j)      assignment constraints
 THR(j)      assignment constraint;
 
-COST..    Z =e= SUM((i,j), d(j,i) * U(j,i) * e(j) * 0.1 * 1000);
-CAP(I)..  SUM(j, e(j) * U(j,i)) =l= c(i) + T(i) * 100;
-ASG(J)..  SUM(i, U(j,i))  =e=  1 ;
+COST..    Z =e= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
+CAP(I)..  SUM(j, e(j) * U(i,j)) =l= c(i) + T(i) * 100;
+ASG(J)..  SUM(i, U(i,j))  =e=  1 ;
 THR(J)..  SUM(i, T(i))  =e=  1 ;
 
 MODEL  GAP /ALL/ ;

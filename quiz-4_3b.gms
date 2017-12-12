@@ -7,7 +7,7 @@ $include "capacities.txt"
 /;
 
 PARAMETER d(i,j)  distance from disposal site i to sector j in kilometers /
-$include "distances2.txt"
+$include "distances.txt"
 /;
 
 PARAMETER e(j)  estimated annual snow of sector j in thousand cubic meters /
