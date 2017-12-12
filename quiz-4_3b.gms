@@ -27,10 +27,10 @@ CAP(i)      capacity constraints
 ASG(j)      assignment constraints
 THR(j)      assignment constraint;
 
-COST..    Z =e= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
-CAP(I)..  SUM(j, e(j) * U(i,j)) =l= c(i) + T(i) * 100;
-ASG(J)..  SUM(i, U(i,j))  =e=  1 ;
-THR(J)..  SUM(i, T(i))  =e=  1 ;
+COST..    Z =E= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
+CAP(i)..  SUM(j, e(j) * U(i,j)) =L= c(i) + T(i) * 100;
+ASG(j)..  SUM(i, U(i,j))  =E=  1 ;
+THR(j)..  SUM(i, T(i))  =E=  1 ;
 
 MODEL  GAP /ALL/ ;
 Option MIP = Cplex;

@@ -24,9 +24,9 @@ COST        define total objective function
 CAP(i)      capacity constraints
 ASG(j)      assignment constraints;
 
-COST..    Z =e= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
-CAP(I)..  SUM(j, e(j) * U(i,j)) =L= c(i);
-ASG(J)..  SUM(i, U(i,j))  =E=  1 ;
+COST..    Z =E= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
+CAP(i)..  SUM(j, e(j) * U(i,j)) =L= c(i);
+ASG(j)..  SUM(i, U(i,j))  =E=  1 ;
 
 MODEL  GAP /ALL/ ;
 Option MIP = Cplex;

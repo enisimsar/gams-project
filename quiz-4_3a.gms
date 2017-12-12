@@ -19,18 +19,14 @@ Z       total cost for objective function ;
 
 BINARY VARIABLE U(i,j)  0 or 1 indicating assignment of sector j to disposal site i;
 
-BINARY VARIABLE T(i)  0 or 1 indicating assignment of sector j to disposal site i;
-
 EQUATIONS
 COST        define total objective function
 CAP(i)      capacity constraints
-ASG(j)      assignment constraints
-THR(j)      assignment constraint;
+ASG(j)      assignment constraints;
 
-COST..    Z =e= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
-CAP(I)..  SUM(j, e(j) * U(i,j)) =l= c(i) + T(i) * 100;
-ASG(J)..  SUM(i, U(i,j))  =e=  1 ;
-THR(J)..  SUM(i, T(i))  =e=  1 ;
+COST..    Z =E= SUM((i,j), d(i,j) * U(i,j) * e(j) * 0.1 * 1000);
+CAP(i)..  SUM(j, e(j) * U(i,j)) =L= c(i);
+ASG(j)..  SUM(i, U(i,j))  =E=  1 ;
 
 MODEL  GAP /ALL/ ;
 Option MIP = Cplex;
